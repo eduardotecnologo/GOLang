@@ -4,8 +4,10 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -15,6 +17,7 @@ const delay = 5
 
 func main() {
 	exibeIntroducao()
+	//registraLog("site-falso", false)
 
 	for {
 		exibeMenu()
@@ -26,6 +29,7 @@ func main() {
 			initMonitoramento()
 		case 2:
 			fmt.Println("\nExibindo Logs...")
+			imprimeLogs()
 		case 3:
 			fmt.Println("\nSaindo...")
 			os.Exit(0)
@@ -119,5 +123,21 @@ func lerSiteArquivo() []string {
 }
 
 func registraLog(site string, status bool) {
+	arquivo, err := os.OpenFile(
+		"log.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 
+	if err != nil {
+		fmt.Println("Ops!!!Ocorreu um erro: ", err)
+	}
+	arquivo.WriteString(time.Now().Format("02/01/2006 15:04:05") + " - " + site + " - online: " + strconv.FormatBool(status) + "\n")
+	//fmt.Println(arquivo)
+	arquivo.Close()
+}
+
+func imprimeLogs() {
+	arquivo, err := ioutil.ReadFIle("log.txt")
+	if err != nil {
+		fmt.Println("Ops!!!Ocorreu um erro: ", err)
+	}
+	fmt.Println(string(arquivo))
 }

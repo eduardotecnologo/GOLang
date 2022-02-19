@@ -1,0 +1,6 @@
+19/02/2022 10:06:00 - https://www.google.com - online: true
+19/02/2022 10:06:00 - https://www.facebook.com - online: true
+19/02/2022 10:06:01 - https://www.twitter.com - online: true
+19/02/2022 10:06:02 - https://www.google.com - online: true
+19/02/2022 10:06:02 - https://www.facebook.com - online: true
+19/02/2022 10:06:03 - https://www.twitter.com - online: true
